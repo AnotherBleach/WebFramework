@@ -29,21 +29,21 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomer(Long id) {
-        return null;
+        return DatabaseHelper.queryEntity(Customer.class,id);
     }
 
     @Override
     public boolean createCustomer(Map<String, Object> fieldMap) {
-        return false;
+        return DatabaseHelper.insertEntity(Customer.class,fieldMap);
     }
 
     @Override
     public boolean updateCustomer(Long id, Map<String, Object> fieldMap) {
-        return false;
+        return DatabaseHelper.updateEntity(Customer.class,id,fieldMap);
     }
 
     @Override
     public boolean deleteCustomer(Long id) {
-        return false;
+        return DatabaseHelper.deleteEntity(Customer.class,id);
     }
 }

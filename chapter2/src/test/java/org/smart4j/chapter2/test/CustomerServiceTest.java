@@ -3,15 +3,20 @@ package org.smart4j.chapter2.test;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.smart4j.chapter2.helper.DatabaseHelper;
 import org.smart4j.chapter2.model.Customer;
 import org.smart4j.chapter2.service.CustomerService;
 import org.smart4j.chapter2.service.CustomerServiceImpl;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+//ALL PASSED
 public class CustomerServiceTest {
 
     private  final CustomerService customerService;
@@ -21,11 +26,11 @@ public class CustomerServiceTest {
     }
 
     @Before
-    public  void init()
-    {
+    public  void init() throws IOException {
 
-        System.out.println("Initializing...");
-
+        System.out.println("Initializing start");
+        DatabaseHelper.executeSqlFile("sql/customer_init.sql");
+        System.out.println("Initializing done");
 
     }
 
@@ -74,7 +79,7 @@ public class CustomerServiceTest {
     public void updateCustomerTest() throws  Exception
     {
 
-        long id = 1;
+        long id = 1L;
         Map<String,Object> fieldMap = new HashMap<>();
         fieldMap.put("contact","eric");
         boolean result = customerService.updateCustomer(id,fieldMap);
